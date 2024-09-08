@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import "./App.css";
 import WordSpace from "./components/WordSpace";
 import WordDisplay from "./components/WordDisplay";
@@ -7,11 +7,12 @@ function App() {
     const initialWord = "cod";
     const targetWord = "pit";
     const [currentWord, setCurrentWord] = useState(initialWord);
+    const resultScreen = useRef<HTMLDivElement>(null);
 
     function handleSubmit(word: string): boolean {
         if (singleLetterDiffers(currentWord, word)) {
             if (targetWord === word) {
-                console.log('You won, yey! (I really gotta change it to something more rewarding, huh?)')
+                if (resultScreen.current) resultScreen.current.style.display = 'flex'
             }
             setCurrentWord(word)
             return true;
@@ -30,6 +31,9 @@ function App() {
 
     return (
         <>
+            <div className="resultScreen" ref={resultScreen}>
+
+            </div>
             <div>
                 <WordDisplay content={targetWord} />
                 <WordDisplay content={currentWord} target={targetWord} />
