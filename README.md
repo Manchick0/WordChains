@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+![Title Image](./public/icon.svg)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Word Chains
 
-Currently, two official plugins are available:
+Word Chains is a simple, yet interesting game with one main objective. That is getting from an inital word to the target one.
+Both initial and target words get chosen from a predifined list, meaning you'll never face any difficulties.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# How to play?
 
-## Expanding the ESLint configuration
+Head over to the [website](https://manchick0.github.io/WordChains/), and start typing with either your own keyboard, or the one located on the page. The word you've typed in must differ from the current one by exactly one letter. If this simple condition is met, you'll be able to continue your game. In case the entered word is invalid, you'll see it glow either red or yellow.
+Red glow means that the word doesn't exist in the dictionary, whilst yellow appears if the word is too far off from the current one.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+> 📱 The website currently doesn't display properly on mobile devices. No worries, it'll be fixed as soon as possible!

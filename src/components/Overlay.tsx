@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import '../stylesheets/Overlay.css'
 
 function Overlay({ children, visible = false }: { children: ReactNode, visible: boolean }) {
