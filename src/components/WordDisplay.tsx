@@ -1,23 +1,22 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 
-function WordDisplay({ content, target }: { content: string, target?: string }) {
+import '../stylesheets/WordDisplay.css'
 
-    const [lastContent, setLastContent] = useState(content)
-
-    useEffect(() => {
-        setLastContent(content);
-    }, [content]);
+function WordDisplay({ content, target, chain }: { content: string, target?: string, chain: string[] }) {
 
     const display = useMemo(() => {
         const result = []
         for (let i = 0; i < content.length; i++) {
             const char = content.charAt(i)
             const highlight = shouldFormat() && target?.charAt(i) === char;
-            const shake = shouldFormat() && lastContent.charAt(i) !== char;
-            result[i] = <CharacterDisplay content={char} highlight={highlight} shake={shake} />
+            let shake = false;
+            if (chain.length > 1) {
+                shake = shouldFormat() && chain[chain.length - 2].charAt(i) !== char;
+            }
+            result[i] = <CharacterDisplay content={char} highlight={highlight} shake={shake} key={i} />
         }
         return result
-    }, [content, target])
+    }, [content, target, chain])
 
     function shouldFormat(): boolean {
         if (target) {
@@ -28,7 +27,7 @@ function WordDisplay({ content, target }: { content: string, target?: string }) 
 
     return (
         <>
-            <div className="wordDisplay">
+            <div id="wordDisplay">
                 {display}
             </div>
         </>
@@ -36,10 +35,11 @@ function WordDisplay({ content, target }: { content: string, target?: string }) 
 }
 
 function CharacterDisplay({ content, highlight, shake }: { content: string, shake?: boolean, highlight?: boolean }) {
+
     return (
         <>
-            <div className={`characterSpace ${highlight ? 'highlight' : ''} ${shake ? 'shake' : ''}`}>
-                <p >{content}</p>
+            <div id='characterDisplay' className={`${highlight ? 'highlight' : ''} ${shake ? 'shake' : ''}`.trim()}>
+                <p>{content}</p>
             </div>
         </>
     )

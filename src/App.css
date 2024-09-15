@@ -5,133 +5,27 @@
   text-align: center;
 }
 
-.resultScreen {
-  display: none;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px);
+/* Overlay */
+
+/* How to Play Overlay */
+
+/* Result Overlay */
+
+#resultOverlay {
+  margin: 10px;
 }
 
-.wordSpace {
-  display: flex;
-  border-radius: 5px;
+#resultOverlay button {
+  background-color: #4169e1;
+  transition: filter 0.3s;
 }
 
-.wordDisplay {
-  display: flex;
-  border-radius: 5px;
-  background-color: black;
+#resultOverlay button:hover {
+  filter: drop-shadow(0 0 1em #4169e1);
+  border-color: white;
+  border-width: 1px;
 }
 
-.characterSpace {
-  background-color: #1c1c1c;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 0.25em;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15em;
-  user-select: none;
-  font-family: monospace;
-  font-weight: 900;
-  font-size: 1.5em;
-  transition: background-color 0.5s ease;
-}
+/* Word Space */
 
-.highlight {
-  background-color: #538d4e;
-}
-
-.shake {
-  animation: shakeAround 0.5s ease-in-out;
-}
-
-.shakeRight {
-  animation: shakeRight 0.5s ease-in-out;
-}
-
-.shakeWrong {
-  animation: shakeWrong 0.5s ease-in-out;
-}
-
-.shakeUnknown {
-  animation: shakeUnknown 0.5s ease-in-out;
-}
-
-@keyframes shakeAround {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  33% {
-    transform: rotate(-25deg) scale(1.25);
-  }
-  66% {
-    transform: rotate(25deg) scale(1.25);
-  }
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-@keyframes shakeRight {
-  0% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-  33% {
-    transform: translateX(-5px);
-    background-color: #538d4e;
-  }
-  66% {
-    transform: translateX(5px);
-    background-color: #538d4e;
-  }
-  100% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-}
-
-@keyframes shakeWrong {
-  0% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-  33% {
-    transform: translateX(-5px);
-    background-color: yellow;
-  }
-  66% {
-    transform: translateX(5px);
-    background-color: yellow;
-  }
-  100% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-}
-
-@keyframes shakeUnknown {
-  0% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-  33% {
-    transform: translateX(-5px);
-    background-color: red;
-  }
-  66% {
-    transform: translateX(5px);
-    background-color: red;
-  }
-  100% {
-    transform: translateX(0);
-    background-color: transparent;
-  }
-}
+/* Animation */

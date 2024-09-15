@@ -1,0 +1,13 @@
+#infoOverlay {
+  margin: 10px;
+  overflow-wrap: break-word;
+}
+
+#infoOverlay button {
+  background-color: #538d4e;
+  transition: filter 0.3s;
+}
+
+#infoOverlay button:hover {
+  filter: drop-shadow(0 0 1em #538d4e);
+}

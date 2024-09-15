@@ -1,0 +1,96 @@
+#wordSpace {
+  display: flex;
+  border-radius: 10px;
+  background-color: #303030;
+  padding: 5px;
+  margin: 5px;
+  transition: background-color 0.5s ease;
+}
+
+#characterSpace {
+  background-color: #1f1f1f;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0.25em;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15em;
+  user-select: none;
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.shakeRight {
+  animation: shakeRight 0.5s ease-in-out;
+}
+
+.shakeWrong {
+  animation: shakeWrong 0.5s ease-in-out;
+  box-shadow: none;
+}
+
+.shakeUnknown {
+  animation: shakeUnknown 0.5s ease-in-out;
+  box-shadow: none;
+}
+
+@keyframes shakeRight {
+  0% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+  33% {
+    transform: translateX(-5px);
+    background-color: #538d4e;
+  }
+  66% {
+    transform: translateX(5px);
+    background-color: #538d4e;
+  }
+  100% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+}
+
+@keyframes shakeWrong {
+  0% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+  33% {
+    transform: translateX(-5px);
+    background-color: yellow;
+  }
+  66% {
+    transform: translateX(5px);
+    background-color: yellow;
+  }
+  100% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+}
+
+@keyframes shakeUnknown {
+  0% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+  33% {
+    transform: translateX(-5px);
+    background-color: red;
+  }
+  66% {
+    transform: translateX(5px);
+    background-color: red;
+  }
+  100% {
+    transform: translateX(0);
+    background-color: #303030;
+  }
+}

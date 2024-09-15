@@ -1,0 +1,12 @@
+#key {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.keyboardRow {
+  display: flex;
+}
+
+.keyboardRow.middle {
+  margin-left: 2em;
+}

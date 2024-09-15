@@ -1,46 +1,15 @@
-import { useCallback, useRef, useState } from "react";
 import "./App.css";
-import WordSpace from "./components/WordSpace";
-import WordDisplay from "./components/WordDisplay";
+import TitleBar from "./components/TitleBar";
+import GameField from "./components/GameField";
 
 function App() {
-    const initialWord = "cod";
-    const targetWord = "pit";
-    const [currentWord, setCurrentWord] = useState(initialWord);
-    const resultScreen = useRef<HTMLDivElement>(null);
-
-    function handleSubmit(word: string): boolean {
-        if (singleLetterDiffers(currentWord, word)) {
-            if (targetWord === word) {
-                if (resultScreen.current) resultScreen.current.style.display = 'flex'
-            }
-            setCurrentWord(word)
-            return true;
-        }
-        return false;
-    }
-
-    const singleLetterDiffers = useCallback((first: string, second: string) => {
-        if (first.length != second.length) return false;
-        let diff = 0;
-        for (let i = 0; i < first.length; i++) {
-            if (first.charAt(i) != second.charAt(i)) diff++;
-        }
-        return diff === 1;
-    }, [])
 
     return (
         <>
-            <div className="resultScreen" ref={resultScreen}>
-
-            </div>
-            <div>
-                <WordDisplay content={targetWord} />
-                <WordDisplay content={currentWord} target={targetWord} />
-                <WordSpace maxLength={3} onSubmit={handleSubmit}></WordSpace>
-            </div>
+            <TitleBar />
+            <GameField />
         </>
     );
 }
 
-export default App;
+export default App

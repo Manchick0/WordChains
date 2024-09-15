@@ -1,0 +1,104 @@
+{
+  "entries": [
+    {
+      "initial": "salt",
+      "target": "mall"
+    },
+    {
+      "initial": "tact",
+      "target": "park"
+    },
+    {
+      "initial": "bush",
+      "target": "rank"
+    },
+    {
+      "initial": "drag",
+      "target": "wrap"
+    },
+    {
+      "initial": "boil",
+      "target": "town"
+    },
+    {
+      "initial": "kill",
+      "target": "bull"
+    },
+    {
+      "initial": "acid",
+      "target": "gram"
+    },
+    {
+      "initial": "cult",
+      "target": "boom"
+    },
+    {
+      "initial": "pile",
+      "target": "sack"
+    },
+    {
+      "initial": "legs",
+      "target": "lawn"
+    },
+    {
+      "initial": "wise",
+      "target": "past"
+    },
+    {
+      "initial": "head",
+      "target": "leaf"
+    },
+    {
+      "initial": "shop",
+      "target": "knot"
+    },
+    {
+      "initial": "rope",
+      "target": "nine"
+    },
+    {
+      "initial": "zoom",
+      "target": "roof"
+    },
+    {
+      "initial": "loop",
+      "target": "fool"
+    },
+    {
+      "initial": "fool",
+      "target": "nerd"
+    },
+    {
+      "initial": "task",
+      "target": "neck"
+    },
+    {
+      "initial": "hold",
+      "target": "hoof"
+    },
+    {
+      "initial": "wrap",
+      "target": "tear"
+    },
+    {
+      "initial": "seem",
+      "target": "road"
+    },
+    {
+      "initial": "gene",
+      "target": "bare"
+    },
+    {
+      "initial": "fire",
+      "target": "wind"
+    },
+    {
+      "initial": "dusk",
+      "target": "wisp"
+    },
+    {
+      "initial": "fate",
+      "target": "gore"
+    }
+  ]
+}

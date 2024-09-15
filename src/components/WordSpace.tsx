@@ -1,19 +1,24 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import sucess from '../assets/success.mp3'
+import Keyboard from './Keyboard'
+
+import '../stylesheets/WordSpace.css'
 
 function WordSpace({ maxLength, onSubmit }: { maxLength: number, onSubmit: (word: string) => boolean }) {
 
     const [content, setContent] = useState('')
+    const [focused, setFocused] = useState(false)
+
     const space = useRef<HTMLDivElement>(null);
     const audio = useRef<HTMLAudioElement>(null);
 
-    const handleDownKey = useCallback(async (event: KeyboardEvent) => {
-        const key = event.key.toLowerCase()
+    const handleKey = useCallback(async (key: string, onKeyBoard: boolean) => {
+        if (onKeyBoard && focused) return
         if (isLetter(key) && canType()) {
             setContent(c => c.concat(key))
             return
         }
-        if (key === 'backspace' && canErase()) {
+        if ((key === 'backspace' || key === 'back') && canErase()) {
             setContent(c => c.substring(0, c.length - 1))
             return
         }
@@ -27,12 +32,28 @@ function WordSpace({ maxLength, onSubmit }: { maxLength: number, onSubmit: (word
                 } else shakeWrong()
             } else shakeUnknown()
         }
-    }, [content, maxLength])
+    }, [content, maxLength, focused])
+
+    const handleKeyDown = useCallback(async (event: KeyboardEvent) => {
+        await handleKey(event.key.toLowerCase(), true)
+    }, [handleKey])
 
     useEffect(() => {
-        document.addEventListener('keydown', handleDownKey)
-        return () => document.removeEventListener('keydown', handleDownKey);
-    }, [handleDownKey])
+        document.addEventListener('keydown', handleKeyDown)
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown])
+
+    useEffect(() => {
+        const handleIn = () => setFocused(true);
+        const handleOut = () => setFocused(false);
+
+        document.addEventListener('focusin', handleIn)
+        document.addEventListener('focusout', handleOut)
+        return () => {
+            document.removeEventListener('focusin', handleIn)
+            document.removeEventListener('focusout', handleOut)
+        }
+    }, [focused])
 
 
     /**
@@ -47,21 +68,25 @@ function WordSpace({ maxLength, onSubmit }: { maxLength: number, onSubmit: (word
         }
     }, [])
 
-    const isWordKnown = useCallback(async (word: string) => {
+    const isWordKnown = useCallback(async (word: string): Promise<boolean> => {
         return await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
             .then((response) => {
                 if (response.ok) {
-                    return true;
+                    return true
                 }
                 if (response.status === 404) {
                     console.log(`This isn't necessarily an issue. The word '${word}' might not exist.`)
+                    return false
                 } else throw new Error()
-            }).catch(err => console.error('Oopsie! Something has gone wrong: ' + err))
+            }).catch(err => {
+                console.error('Oopsie! Something has gone wrong: ' + err)
+                return false
+            })
     }, [])
 
-    const isWordComplete = useCallback(() => {
-        return content.length === maxLength;
-    }, [content])
+    const isWordComplete = useCallback((): boolean => {
+        return content.length === maxLength
+    }, [content, maxLength])
 
     const canType = useCallback(() => {
         return content.length < maxLength;
@@ -119,9 +144,10 @@ function WordSpace({ maxLength, onSubmit }: { maxLength: number, onSubmit: (word
     return (
         <>
             <audio src={sucess} ref={audio} />
-            <div className="wordSpace" ref={space} onAnimationEnd={handleAnimationEnd}>
+            <div id="wordSpace" ref={space} onAnimationEnd={handleAnimationEnd}>
                 {display}
             </div>
+            <Keyboard keyDown={c => handleKey(c, false)}></Keyboard>
         </>
     )
 }
@@ -129,7 +155,7 @@ function WordSpace({ maxLength, onSubmit }: { maxLength: number, onSubmit: (word
 function CharacterSpace({ content }: { content: string }) {
     return (
         <>
-            <div className="characterSpace">
+            <div id="characterSpace">
                 <p>{content}</p>
             </div>
         </>

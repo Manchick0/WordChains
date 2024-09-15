@@ -1,0 +1,12 @@
+#gameField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+}
+
+#wordFlow {
+  display: flex;
+  flex-direction: row;
+}
